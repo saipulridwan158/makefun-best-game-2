@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>STARBLOOM</title>
+<style>
+  html, body { margin: 0; padding: 0; background: #0a0714; overflow: hidden; height: 100%; }
+  #stage { position: relative; width: min(100vw, calc(100vh * 16 / 9)); height: min(100vh, calc(100vw * 9 / 16));
+           margin: 0 auto; }
+  canvas#game { display: block; width: 100%; height: 100%; cursor: crosshair; }
+  #hud-root, #overlay-root { position: absolute; inset: 0; pointer-events: none; }
+  #hud { display: flex; justify-content: space-between; padding: 18px 26px;
+         font-family: monospace; color: #e8e4ff; }
+  .hud-label { font-size: 12px; letter-spacing: 3px; color: #6b5f96; }
+  #hud-score { font-size: 34px; font-weight: bold; color: #7df9ff; text-shadow: 0 0 12px #7df9ff66; }
+  #hud-combo { font-size: 16px; color: #ffe66d; font-weight: bold; }
+  #hud-center { text-align: center; }
+  #hud-wave { font-size: 28px; font-weight: bold; }
+  #hud-wave-state { font-size: 12px; }
+  #hud-right { text-align: right; }
+  #hud-hp-bar { width: 220px; height: 14px; border: 1px solid #6b5f96; margin-top: 4px; margin-left: auto; }
+  #hud-hp-fill { height: 100%; width: 100%; background: #7df9ff; transition: width 0.15s; }
+  #hud-kills { font-size: 12px; color: #6b5f96; margin-top: 6px; }
+  #overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+             background: rgba(10, 7, 20, 0.72); pointer-events: auto; }
+  #overlay-inner { text-align: center; font-family: monospace; color: #e8e4ff; max-width: 640px; }
+  #ov-title { font-size: 54px; letter-spacing: 9px; color: #7df9ff; margin: 0; white-space: nowrap;
+              text-shadow: 0 0 24px #7df9ff, 0 0 60px #b06bff88; }
+  #ov-sub { font-size: 15px; letter-spacing: 5px; color: #b06bff; margin: 8px 0 22px; }
+  #ov-body { font-size: 15px; line-height: 1.7; color: #c9c2e8; }
+  #ov-body .hi { color: #ffe66d; font-size: 20px; letter-spacing: 2px; }
+  #ov-prompt { font-size: 20px; letter-spacing: 4px; color: #ffe66d; margin: 26px 0 14px;
+               animation: blink 1.2s infinite; }
+  @keyframes blink { 0%, 60% { opacity: 1; } 70%, 100% { opacity: 0.25; } }
+  #ov-controls { display: flex; gap: 22px; justify-content: center; font-size: 13px; color: #6b5f96; }
+  #ov-controls b { color: #e8e4ff; }
+  .stats { display: flex; gap: 34px; justify-content: center; margin: 10px 0; }
+  .stat-num { font-size: 30px; font-weight: bold; color: #7df9ff; }
+  .stat-lab { font-size: 11px; letter-spacing: 2px; color: #6b5f96; }
+</style>
+<script type="module" src="src/main.js"></script>
+</head>
+<body>
+  <div id="stage">
+    <canvas id="game" width="1280" height="720"></canvas>
+    <div id="hud-root"></div>
+    <div id="overlay-root"></div>
+  </div>
+</body>
+</html>
